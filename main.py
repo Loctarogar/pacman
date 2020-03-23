@@ -21,6 +21,9 @@ class Game:
                 
         self.screen.fill(BLACK)
         pg.display.flip()
+        
+    def draw_map(self):
+        pg.draw.rect()
       
 game = Game()          
 while game.running:
