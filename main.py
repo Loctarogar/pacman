@@ -18,7 +18,14 @@ class Game:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False
-
+        
+        keys = pygame.key.get_pressed()
+        
+        if keys[pygame.K_LEFT]:
+            pass
+        if keys[pygame.K_RIGHT]:
+            pass
+                
         self.screen.fill(BLACK)
         self.draw_map()
         pg.display.flip()
