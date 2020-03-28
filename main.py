@@ -18,26 +18,28 @@ class Game:
 
     def run(self):
         # events check
-        self.clock.tick(60)
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                self.running = False
+        self.clock.tick(30)
+        while self.running:
+            
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.running = False
 
-        keys = pg.key.get_pressed()
+            keys = pg.key.get_pressed()
 
-        if keys[pg.K_LEFT]:
-            self.player.move_left()
-        if keys[pg.K_RIGHT]:
-            self.player.move_right()
-        if keys[pg.K_UP]:
-            self.player.move_up
-        if keys[pg.K_DOWN]:
-            self.player.move_down
+            if keys[pg.K_LEFT]:
+                self.player.move_left()
+            if keys[pg.K_RIGHT]:
+                self.player.move_right()
+            if keys[pg.K_UP]:
+                self.player.move_up()
+            if keys[pg.K_DOWN]:
+                self.player.move_down()
 
-        self.all_sprites.update()
-        self.screen.fill(BLACK)
-        self.draw()
-        pg.display.flip()
+            self.all_sprites.update()
+            self.screen.fill(BLACK)
+            self.draw()
+            pg.display.flip()
         
     def draw(self):
         self.draw_map()
