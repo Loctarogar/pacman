@@ -1,6 +1,7 @@
 import pygame as pg
 from os import *
 from game_settings import *
+from player import *
 
 class Game:
     def __init__(self):
@@ -10,6 +11,9 @@ class Game:
         self.clock = pg.time.Clock()
 
     def new_game(self):
+        self.all_sprites = pg.sprite.Group()
+        self.player = Player()
+        self.all_sprites.add(self.player)
         self.run()
 
     def run(self):
@@ -19,16 +23,20 @@ class Game:
             if event.type == pg.QUIT:
                 self.running = False
         
-        keys = pygame.key.get_pressed()
+        keys = pg.key.get_pressed()
         
-        if keys[pygame.K_LEFT]:
+        if keys[pg.K_LEFT]:
             pass
-        if keys[pygame.K_RIGHT]:
+        if keys[pg.K_RIGHT]:
             pass
-                
+
         self.screen.fill(BLACK)
-        self.draw_map()
+        self.draw()
         pg.display.flip()
+        
+    def draw(self):
+        self.draw_map()
+        self.all_sprites.draw(self.screen)
 
     def draw_map(self):
         for i in MAP_LIST:

@@ -7,7 +7,7 @@ class Player(pg.sprite.Sprite):
         self.image = pg.Surface((30, 30))
         self.image.fill(WHITE)
         self.rect = self.image.get_rect()
-        self.rect.center = (200, 200)
+        self.rect.center = (215, 200)
     
     def move_up(self):
         pass
