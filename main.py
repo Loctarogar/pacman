@@ -22,14 +22,19 @@ class Game:
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False
-        
-        keys = pg.key.get_pressed()
-        
-        if keys[pg.K_LEFT]:
-            pass
-        if keys[pg.K_RIGHT]:
-            pass
 
+        keys = pg.key.get_pressed()
+
+        if keys[pg.K_LEFT]:
+            self.player.move_left()
+        if keys[pg.K_RIGHT]:
+            self.player.move_right()
+        if keys[pg.K_UP]:
+            self.player.move_up
+        if keys[pg.K_DOWN]:
+            self.player.move_down
+
+        self.all_sprites.update()
         self.screen.fill(BLACK)
         self.draw()
         pg.display.flip()
