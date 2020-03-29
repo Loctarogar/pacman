@@ -2,6 +2,7 @@ import pygame as pg
 from os import *
 from game_settings import *
 from player import *
+from walls import *
 
 class Game:
     def __init__(self):
@@ -11,16 +12,16 @@ class Game:
         self.clock = pg.time.Clock()
 
     def new_game(self):
-        self.all_sprites = pg.sprite.Group()
+        self.player_sprite = pg.sprite.Group()
         self.player = Player()
-        self.all_sprites.add(self.player)
+        self.player_sprite.add(self.player)
         self.run()
 
     def run(self):
         # events check
         self.clock.tick(30)
         while self.running:
-            
+
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.running = False
@@ -35,19 +36,24 @@ class Game:
                 self.player.move_up()
             if keys[pg.K_DOWN]:
                 self.player.move_down()
+            
+            
 
-            self.all_sprites.update()
+            self.player_sprite.update()
             self.screen.fill(BLACK)
             self.draw()
             pg.display.flip()
-        
+
     def draw(self):
         self.draw_map()
-        self.all_sprites.draw(self.screen)
+        self.map_sprite.draw(self.screen)
+        self.player_sprite.draw(self.screen)
 
     def draw_map(self):
+        self.map_sprite = pg.sprite.Group()
         for i in MAP_LIST:
-            pg.draw.rect(self.screen, WHITE, (i))
+            wall = Wall(i[0], i[1], i[2], i[3])
+            self.map_sprite.add(wall)
 
 game = Game()          
 while game.running:

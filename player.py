@@ -10,6 +10,7 @@ class Player(pg.sprite.Sprite):
         self.rect.center = (215, 200)
     
     def move_up(self):
+        
         self.rect.y -= 1
     
     def move_down(self):
