@@ -3,6 +3,7 @@ from os import *
 from game_settings import *
 from player import *
 from walls import *
+from ghost import *
 
 class Game:
     def __init__(self):
@@ -15,6 +16,9 @@ class Game:
         self.player_sprite = pg.sprite.Group()
         self.player = Player(self)
         self.player_sprite.add(self.player)
+        self.ghost_sprite = pg.sprite.Group()
+        self.ghost = Ghost()
+        self.ghost_sprite.add(self.ghost)
         self.run()
 
     def run(self):
@@ -46,6 +50,7 @@ class Game:
         self.draw_map()
         self.map_sprite.draw(self.screen)
         self.player_sprite.draw(self.screen)
+        self.ghost_sprite.draw(self.screen)
 
     def draw_map(self):
         self.map_sprite = pg.sprite.Group()
