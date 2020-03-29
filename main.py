@@ -13,7 +13,7 @@ class Game:
 
     def new_game(self):
         self.player_sprite = pg.sprite.Group()
-        self.player = Player()
+        self.player = Player(self)
         self.player_sprite.add(self.player)
         self.run()
 
@@ -37,8 +37,6 @@ class Game:
             if keys[pg.K_DOWN]:
                 self.player.move_down()
             
-            
-
             self.player_sprite.update()
             self.screen.fill(BLACK)
             self.draw()
@@ -52,9 +50,10 @@ class Game:
     def draw_map(self):
         self.map_sprite = pg.sprite.Group()
         for i in MAP_LIST:
+            #           x,    y,    width, height
             wall = Wall(i[0], i[1], i[2], i[3])
             self.map_sprite.add(wall)
-
+            
 game = Game()          
 while game.running:
     game.new_game()
