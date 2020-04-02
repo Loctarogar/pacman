@@ -10,35 +10,15 @@ class Ghost(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (275, 200)
         
-    def move_up(self):
-        self.rect.y -= 1
-        hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
-        if hits:
-            self.rect.y += 1
-            return True
-        print ('up false')
-        return False
+    def can_move(self):
+        return True
     
-    def move_down(self):
-        self.rect.y += 2
-        hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
-        if hits:
+    def move(self, direction):
+        if direction == 'UP' and self.can_move():
             self.rect.y -= 2
-            return True
-        return False
-    
-    def move_left(self):
-        self.rect.x -= 2
-        hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
-        if hits:
-            self.rect.x += 2
-            return True
-        return False
-    
-    def move_right(self):
-        self.rect.x += 2
-        hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
-        if hits:
+        elif direction == 'DOWN' and self.can_move():
+            self.rect.y += 2
+        elif direction == 'LEFT' and self.can_move():
             self.rect.x -= 2
-            return True
-        return False
+        elif direction == 'RIGTH' and self.can_move():
+            self.rect.x += 2
