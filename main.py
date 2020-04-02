@@ -8,6 +8,9 @@ from ghost import *
 class Game:
     def __init__(self):
         pg.init()
+        # define group for map sprites
+        self.map_sprite = pg.sprite.Group()
+        
         self.running = True
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
@@ -17,15 +20,14 @@ class Game:
         self.player = Player(self)
         self.player_sprite.add(self.player)
         self.ghost_sprite = pg.sprite.Group()
-        self.ghost = Ghost()
+        self.ghost = Ghost(self)
         self.ghost_sprite.add(self.ghost)
         self.run()
 
     def run(self):
-        # events check
-        self.clock.tick(30)
+        self.clock.tick(10)
         while self.running:
-
+            # events check
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.running = False
@@ -41,7 +43,9 @@ class Game:
             if keys[pg.K_DOWN]:
                 self.player.move_down()
             
+            
             self.player_sprite.update()
+            self.move_ghost()
             self.screen.fill(BLACK)
             self.draw()
             pg.display.flip()
@@ -53,11 +57,23 @@ class Game:
         self.ghost_sprite.draw(self.screen)
 
     def draw_map(self):
-        self.map_sprite = pg.sprite.Group()
+        #self.map_sprite = pg.sprite.Group()
         for i in MAP_LIST:
             #           x,    y,    width, height
             wall = Wall(i[0], i[1], i[2], i[3])
             self.map_sprite.add(wall)
+            
+    def move_ghost(self):
+        if self.ghost.move_up():
+            print ('move up')
+            return
+        elif self.ghost.move_down():
+            print ('move down')
+            return
+        elif self.ghost.move_left():
+            return
+        elif self.ghost.move_right():
+            return
             
 game = Game()          
 while game.running:
