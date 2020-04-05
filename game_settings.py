@@ -9,6 +9,12 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 
+#directions for ghost
+UP = 'UP'
+DOWN = 'DOWN'
+LEFT = 'LEFT'
+RIGHT = 'RIGHT'
+
 MAP_LIST = [
             # (x, y, width, height)
             # sides

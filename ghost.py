@@ -9,16 +9,17 @@ class Ghost(pg.sprite.Sprite):
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.rect.center = (275, 200)
+        self.direction = UP
         
     def can_move(self):
         return True
     
-    def move(self, direction):
-        if direction == 'UP' and self.can_move():
+    def move(self):
+        if self.direction == 'UP' and self.can_move():
             self.rect.y -= 2
-        elif direction == 'DOWN' and self.can_move():
+        elif self.direction == 'DOWN' and self.can_move():
             self.rect.y += 2
-        elif direction == 'LEFT' and self.can_move():
+        elif self.direction == 'LEFT' and self.can_move():
             self.rect.x -= 2
-        elif direction == 'RIGTH' and self.can_move():
+        elif self.direction == 'RIGTH' and self.can_move():
             self.rect.x += 2

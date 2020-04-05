@@ -62,8 +62,7 @@ class Game:
             self.map_sprite.add(wall)
             
     def move_ghost(self):
-        self.ghost.move('UP')
-        pass
+        self.ghost.move()
             
 game = Game()          
 while game.running:
