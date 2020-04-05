@@ -11,6 +11,7 @@ class Game:
         self.running = True
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
+        self.create_map()
 
     def new_game(self):
         self.player_sprite = pg.sprite.Group()
@@ -49,12 +50,11 @@ class Game:
             pg.display.flip()
 
     def draw(self):
-        self.draw_map()
         self.map_sprite.draw(self.screen)
         self.player_sprite.draw(self.screen)
         self.ghost_sprite.draw(self.screen)
 
-    def draw_map(self):
+    def create_map(self):
         self.map_sprite = pg.sprite.Group()
         for i in MAP_LIST:
             #           x,    y,    width, height
@@ -63,6 +63,7 @@ class Game:
             
     def move_ghost(self):
         self.ghost.move()
+
             
 game = Game()          
 while game.running:

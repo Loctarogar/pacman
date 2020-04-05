@@ -16,7 +16,9 @@ class Ghost(pg.sprite.Sprite):
     
     def move(self):
         if self.direction == 'UP' and self.can_move():
-            self.rect.y -= 2
+            hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
+            if not hits:
+                self.rect.y -= 2
         elif self.direction == 'DOWN' and self.can_move():
             self.rect.y += 2
         elif self.direction == 'LEFT' and self.can_move():
