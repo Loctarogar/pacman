@@ -11,6 +11,7 @@ class Game:
         self.running = True
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
+        self.clock.tick(20)
         self.create_map()
 
     def new_game(self):
@@ -24,7 +25,7 @@ class Game:
         
     def run(self):
         # TODO: clock doesn't work
-        self.clock.tick(20)
+        
         
         while self.running:
             # events check
