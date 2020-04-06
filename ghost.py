@@ -19,7 +19,6 @@ class Ghost(pg.sprite.Sprite):
     
     def move(self):
         if self.direction == UP:
-            self.change_direction()
             self.rect.y -= 1
             hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
             if hits:
@@ -28,7 +27,6 @@ class Ghost(pg.sprite.Sprite):
                 self.move()
                 
         elif self.direction == DOWN:
-            self.change_direction()
             self.rect.y += 1
             hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
             if hits:
@@ -36,7 +34,6 @@ class Ghost(pg.sprite.Sprite):
                 self.change_direction()
                 self.move()
         elif self.direction == LEFT:
-            self.change_direction()
             self.rect.x -= 1
             hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
             if hits:
@@ -44,7 +41,6 @@ class Ghost(pg.sprite.Sprite):
                 self.change_direction()
                 self.move()
         elif self.direction == RIGHT:
-            self.change_direction()
             self.rect.x += 1
             hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
             if hits:
