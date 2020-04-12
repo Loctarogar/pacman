@@ -23,7 +23,7 @@ class Ghost(pg.sprite.Sprite):
         self.direction = self.directions[random.randint(0, int(len(self.directions) - 1))]
         
     def is_sprite_collide(self):
-        hits = pg.sprite.spritecollide(self.game.ghost, self.game.map_sprite, False)
+        hits = pg.sprite.spritecollide(self, self.game.map_sprite, False)
         if hits:
             return True
         
