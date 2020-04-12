@@ -10,6 +10,7 @@ class Game:
         pg.init()
         self.running = True
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        # TODO: Clock doesn't work
         self.clock = pg.time.Clock()
         self.clock.tick(20)
         self.create_map()
@@ -21,14 +22,12 @@ class Game:
         self.ghost_sprite = pg.sprite.Group()
         self.ghost = Ghost(self)
         self.ghost_sprite.add(self.ghost)
-        self.ghost2 = Ghost(self, 395, 200)
-        self.ghost_sprite.add(self.ghost2)
+        self.ghost_sprite2 = pg.sprite.Group()
+        self.ghost2 = Ghost(self, 395, 200, GREEN)
+        self.ghost_sprite2.add(self.ghost2)
         self.run()
-        
+
     def run(self):
-        # TODO: clock doesn't work
-        
-        
         while self.running:
             # events check
             for event in pg.event.get():
@@ -36,7 +35,6 @@ class Game:
                     self.running = False
 
             keys = pg.key.get_pressed()
-
             if keys[pg.K_LEFT]:
                 self.player.move_left()
             if keys[pg.K_RIGHT]:
@@ -45,9 +43,11 @@ class Game:
                 self.player.move_up()
             if keys[pg.K_DOWN]:
                 self.player.move_down()
+
             self.move_ghost()
             self.player_sprite.update()
             self.ghost_sprite.update()
+            self.ghost_sprite2.update()
             self.screen.fill(BLACK)
             self.draw()
             pg.display.flip()
@@ -56,6 +56,7 @@ class Game:
         self.map_sprite.draw(self.screen)
         self.player_sprite.draw(self.screen)
         self.ghost_sprite.draw(self.screen)
+        self.ghost_sprite2.draw(self.screen)
 
     def create_map(self):
         self.map_sprite = pg.sprite.Group()
@@ -63,12 +64,11 @@ class Game:
             #           x,    y,    width, height
             wall = Wall(i[0], i[1], i[2], i[3])
             self.map_sprite.add(wall)
-            
+
     def move_ghost(self):
         self.ghost.move()
-        #self.ghost2.move()
+        self.ghost2.move()
 
-            
 game = Game()          
 while game.running:
     game.new_game()

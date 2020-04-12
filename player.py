@@ -9,19 +9,19 @@ class Player(pg.sprite.Sprite):
         self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = (215, 200)
-    
+
     def move_up(self):
         self.rect.y -= 2
         hits = pg.sprite.spritecollide(self.game.player, self.game.map_sprite, False)
         if hits:
             self.rect.y += 2
-    
+
     def move_down(self):
         self.rect.y += 2
         hits = pg.sprite.spritecollide(self.game.player, self.game.map_sprite, False)
         if hits:
             self.rect.y -= 2
-    
+
     def move_left(self):
         self.rect.x -= 2
         hits = pg.sprite.spritecollide(self.game.player, self.game.map_sprite, False)
