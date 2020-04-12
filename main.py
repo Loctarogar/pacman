@@ -21,6 +21,8 @@ class Game:
         self.ghost_sprite = pg.sprite.Group()
         self.ghost = Ghost(self)
         self.ghost_sprite.add(self.ghost)
+        self.ghost2 = Ghost(self, 395, 200)
+        self.ghost_sprite.add(self.ghost2)
         self.run()
         
     def run(self):
@@ -64,6 +66,7 @@ class Game:
             
     def move_ghost(self):
         self.ghost.move()
+        #self.ghost2.move()
 
             
 game = Game()          
